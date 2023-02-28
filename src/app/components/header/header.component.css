@@ -1,0 +1,22 @@
+/* .header-root{
+    position: relative;
+    width: 100%;
+} */
+.header-spacer {
+    flex: 1 1 auto;
+}
+.header-container mat-form-field + mat-form-field{
+    margin-left: 10px;
+}
+
+.header-title{
+    /* flex: 1 1 auto; */
+    margin: 0 1em;
+}
+.header-form-field {
+    /* flex: 1 1 auto;
+    min-width: 150px;
+    max-width: 500px; */
+    /* width: 100%; */
+    margin-bottom: -2.5em;
+}

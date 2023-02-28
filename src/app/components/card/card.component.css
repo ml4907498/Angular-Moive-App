@@ -1,0 +1,25 @@
+.example-card {
+    /* width: 1500px;
+    height: 1000px; */
+    width: 400px;
+    height: 550px;
+}
+    
+  /* .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  } */
+/*   
+img {
+    width: "500";
+    height: "600"
+} */
+
+.card-container{
+    width: 400px;
+    position: relative;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 20px;
+}

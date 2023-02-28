@@ -1,0 +1,8 @@
+<mat-grid-list class="home-root" cols="5" rowHeight="1:1">
+    <mat-grid-tile *ngFor="let item of favoriteList">
+        <app-card [data] = "item" *ngIf="favoriteList.length>0"></app-card>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+
