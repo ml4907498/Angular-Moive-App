@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms'
 import { OMDBDataService } from 'src/app/services/OMDB-data.service';
 import { FavoriteMovieDataService } from 'src/app/services/favoriteMovie-data.service';
@@ -8,7 +8,7 @@ import { FavoriteMovieDataService } from 'src/app/services/favoriteMovie-data.se
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   inputsValue = {
     title: '',
     year: '',
@@ -26,12 +26,10 @@ export class HeaderComponent {
     private favoriteMovieDataService: FavoriteMovieDataService
   ){}
 
-  // TODO - counter
   ngOnInit(): void {
-    this.favoriteMovieDataService.currentMovieListData
-      .subscribe(data => {
-        console.log(data.length)
-        this.count = data.length;
+    this.favoriteMovieDataService.currentimdbIdList.subscribe(data => {
+      this.count = data.size;
+      console.log(data.size)
     })
   }
 

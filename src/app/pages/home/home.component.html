@@ -1,7 +1,9 @@
 <!-- TODO use Grid to show the movie list -->
 <!-- <app-card [data] = "movieData" ></app-card> -->
 
-
+<mat-toolbar *ngIf="movieListData.length > 0">
+    <span class="header-title">Search result:</span>
+</mat-toolbar>
 
 <mat-grid-list class="home-root" cols="4" rowHeight="1:1.8">
     <mat-grid-tile *ngFor="let item of movieListData">

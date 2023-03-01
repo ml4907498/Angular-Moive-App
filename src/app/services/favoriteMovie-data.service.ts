@@ -1,50 +1,33 @@
 import { Injectable } from "@angular/core";
-import { Observable, BehaviorSubject } from "rxjs";
-import { OMDBResponse } from "./OMDB-data.service";
-import { map } from 'rxjs/operators';
+import { BehaviorSubject } from "rxjs";
+
 
 @Injectable({
     providedIn: 'root'
 })
 export class FavoriteMovieDataService{
-    // private count = new BehaviorSubject(0);
-    // currentCount = this.count.asObservable();
-
-    private movieListData:BehaviorSubject<any> = new BehaviorSubject([]);
-    currentMovieListData = this.movieListData.asObservable();
-
-    private movieTitleList: BehaviorSubject<any> = new BehaviorSubject([]);
-    // currentMovieTitleListData = this.movieTitleList.asObservable();
+    private imdbIdList:BehaviorSubject<any> = new BehaviorSubject(new Set<string>());
+    currentimdbIdList = this.imdbIdList.asObservable();
 
     constructor(){}
 
-    public addFavoriteMovie(movieData: OMDBResponse){
-        this.movieListData.getValue().push(movieData);
-        this.movieTitleList.getValue().push(movieData.Title);
-        console.log((this.movieListData));
-        console.log((this.movieTitleList));
+    public addFavoriteMovie(imdbId: string){
+        const newList = this.imdbIdList.getValue();
+        newList.add(imdbId);
+        this.imdbIdList.next(newList)
+        console.log(newList);
     }
 
-    // TODO
-    public removeFavoriteMovie(movieData: OMDBResponse){
-        // this.currentMovieListData.value.filter(val = > val.Title !== movieData.Title)
-        // // .pipe(map(arr => arr.filter(val = > val.Title !== movieData.Title)))
-        // .subscribe(data=>{
-        //     this.movieListData.next([...data, movieData])
-        // })
+    public removeFavoriteMovie(imdbId: string){
+        const newList = this.imdbIdList.getValue();
+        newList.delete(imdbId);
+        this.imdbIdList.next(newList)
+        console.log(newList);
     }
 
-    // TODO - Use IMDB ID 
-    public getIsFavorite(movieData: OMDBResponse){
-        console.log(this.movieTitleList.getValue())
-        // return this.movieTitleList.getValue().inculde(movieData.Title)
+    public getIsFavorite(imdbId: string):boolean{
+        console.log(this.imdbIdList.getValue().has(imdbId))
+        return this.imdbIdList.getValue().has(imdbId)
     }
-
-    // public addCount(movieData: OMDBResponse){
-    //     this.currentMovieListData.subscribe(data=>{
-    //         this.movieListData.next([...data, movieData])
-    //     })
-    // }
-
 
 }

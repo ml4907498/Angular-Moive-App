@@ -16,32 +16,35 @@
             <button mat-button [color]="isBasic ? 'basic' : 'warn' "  (click) = "addToFavoriteList()">
                 <mat-icon>favorite</mat-icon>
             </button>
-            <button mat-button (click)="componentName = 'detial'">More info</button>
+            <button mat-button (click)="componentName = 'detial'; getMoiveDetial()">More info</button>
         </mat-card-actions>
     </mat-card>
     
-    <!-- <mat-card class="example-card" *ngSwitchCase="'detial'">
+    <mat-card class="example-card" *ngSwitchCase="'detial'">
+        <mat-card-header class="card-header">
+            <mat-card-subtitle class="card-title">{{data.Title}}({{data.Year}})</mat-card-subtitle>
+        </mat-card-header>
         <mat-card-header>
             <mat-card-title-group>
-                <mat-card-title>{{data.Title}}({{data.Year}})</mat-card-title>
-                <mat-card-subtitle>{{data.Ratings[0].Value}}</mat-card-subtitle>
-                <mat-card-subtitle>Director:{{data.Director}}</mat-card-subtitle>
-                <mat-card-subtitle>Actors:{{data.Actors}}</mat-card-subtitle>
-                <img mat-card-xl-image src={{data.Poster}} >
+                <mat-card-title class="card-rating">
+                    <span>{{detialData.Ratings[0].Value}}</span>
+                </mat-card-title>
+                <mat-card-subtitle>Director:{{detialData.Director}}</mat-card-subtitle>
+                <mat-card-subtitle>Actors:{{detialData.Actors}}</mat-card-subtitle>
+                <img mat-card-xl-image src={{detialData.Poster}} >
             </mat-card-title-group>
         </mat-card-header>
         <mat-card-content>
-            <p>
-                {{data.Plot}}
-            </p>
+            {{detialData.Plot}}
         </mat-card-content>
+        <span class="card-spacer"></span>
         <mat-card-actions align="end">
             <button mat-button  [color]="isBasic ? 'basic' : 'warn' "  (click) = "addToFavoriteList()">
                 <mat-icon>favorite</mat-icon>
             </button>
             <button mat-button (click)="componentName = 'brief'">Back</button>
         </mat-card-actions>
-    </mat-card> -->
+    </mat-card>
 
 </div>
 

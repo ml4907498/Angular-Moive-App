@@ -30,8 +30,20 @@
   object-fit: cover; 
 }
 .card-header{
-  height: 35px;
+  height: 65px;
 }
 .card-title{
   color:black;
+}
+mat-card {
+  height: 560px; 
+  width: 320px; 
+  overflow: auto;
+}
+
+.card-spacer {
+  flex: 1 1 auto;
+}
+.card-rating{
+  /* color: red; */
 }
