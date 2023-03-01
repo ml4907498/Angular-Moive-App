@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { OMDBResponse, fakeMovieData } from 'src/app/services/OMDB-data.service';
+import { OMDBMovieBrief, fakeMovieBrief } from 'src/app/services/OMDB-data.service';
 import { FavoriteMovieDataService } from 'src/app/services/favoriteMovie-data.service';
 
 @Component({
@@ -8,15 +8,15 @@ import { FavoriteMovieDataService } from 'src/app/services/favoriteMovie-data.se
   styleUrls: ['./card.component.css']
 })
 export class CardComponent {
-  @Input() data: OMDBResponse;
+  @Input() data: OMDBMovieBrief;
   componentName:String = 'brief';
   isBasic:Boolean = true;
   
   constructor(
     private favoriteMovieDataService: FavoriteMovieDataService
   ){
-    this.data = fakeMovieData;
-    this.favoriteMovieDataService.getIsFavorite(this.data)
+    this.data = fakeMovieBrief;
+    // this.favoriteMovieDataService.getIsFavorite(this.data)
     // this.isBasic = !this.favoriteMovieDataService.getIsFavorite(this.data)
   }
 
@@ -33,8 +33,8 @@ export class CardComponent {
     this.isBasic = !this.isBasic;
     console.log(this.isBasic);
     if(this.isBasic){
-      this.favoriteMovieDataService.addFavoriteMovie(this.data);
-      console.log('add:' + this.data)
+      // this.favoriteMovieDataService.addFavoriteMovie(this.data);
+      // console.log('add:' + this.data)
     }
     else{
       // this.favoriteMovieDataService.removeFavoriteMovie(this.data);

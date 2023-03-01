@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from './components/card/card.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
+import { FavoriteComponent } from './pages/favorite/favorite.component';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -21,7 +22,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule }  from '@angular/material/select';
 import { MatBadgeModule } from '@angular/material/badge';
-import { FavoriteComponent } from './pages/favorite/favorite.component';
+
 
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { OMDBDataService } from 'src/app/services/OMDB-data.service';
 import { Component, OnInit } from '@angular/core';
-import { OMDBResponse, fakeMovieData } from 'src/app/services/OMDB-data.service';
+import { OMDBResponse, OMDBMovieBrief, fakeMovieData, fakeMovieBrief } from 'src/app/services/OMDB-data.service';
 
 @Component({
   selector: 'app-home',
@@ -8,19 +8,20 @@ import { OMDBResponse, fakeMovieData } from 'src/app/services/OMDB-data.service'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
-  movieData:OMDBResponse = fakeMovieData;
+  movieListData:OMDBMovieBrief[] = [fakeMovieBrief];
   showCard:boolean = false;
+  movieData:OMDBMovieBrief = fakeMovieBrief
 
   constructor(
     private omdbDataService: OMDBDataService
   ){}
 
   ngOnInit(): void {
-    this.omdbDataService.currentMovieData
+    this.omdbDataService.currentMovieListData
       .subscribe(data => {
-        console.log(data.Title)
-        this.movieData = data;
-        if(data.Title) this.showCard = true;
+        this.movieListData = data;
+        this.movieData = data[0]
+        // if(data.Title) this.showCard = true;
   })
 
 

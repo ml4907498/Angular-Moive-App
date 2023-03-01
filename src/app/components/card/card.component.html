@@ -7,10 +7,10 @@
 </mat-card> -->
 <div [ngSwitch]="componentName" class="card-container">
     <mat-card class="example-card" *ngSwitchCase="'brief'">
-        <mat-card-header>
-            <mat-card-title>{{data.Title}}({{data.Year}})</mat-card-title>
+        <mat-card-header class="card-header">
+            <mat-card-subtitle class="card-title">{{data.Title}}({{data.Year}})</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src={{data.Poster}}  />
+        <img mat-card-image src={{data.Poster}} class="card-image" />
         <mat-card-actions align="end">
             <!-- <span class="card-spacer"></span> -->
             <button mat-button [color]="isBasic ? 'basic' : 'warn' "  (click) = "addToFavoriteList()">
@@ -20,7 +20,7 @@
         </mat-card-actions>
     </mat-card>
     
-    <mat-card class="example-card" *ngSwitchCase="'detial'">
+    <!-- <mat-card class="example-card" *ngSwitchCase="'detial'">
         <mat-card-header>
             <mat-card-title-group>
                 <mat-card-title>{{data.Title}}({{data.Year}})</mat-card-title>
@@ -36,13 +36,12 @@
             </p>
         </mat-card-content>
         <mat-card-actions align="end">
-            <!-- <span class="card-spacer"></span> -->
             <button mat-button  [color]="isBasic ? 'basic' : 'warn' "  (click) = "addToFavoriteList()">
                 <mat-icon>favorite</mat-icon>
             </button>
             <button mat-button (click)="componentName = 'brief'">Back</button>
         </mat-card-actions>
-    </mat-card>
+    </mat-card> -->
 
 </div>
 

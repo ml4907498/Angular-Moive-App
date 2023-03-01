@@ -1,5 +1,13 @@
 <!-- TODO use Grid to show the movie list -->
-<app-card [data] = "movieData" *ngIf="showCard"></app-card>
+<!-- <app-card [data] = "movieData" ></app-card> -->
+
+
+
+<mat-grid-list class="home-root" cols="4" rowHeight="1:1.8">
+    <mat-grid-tile *ngFor="let item of movieListData">
+        <app-card [data] = "item" *ngIf="movieListData.length>0"></app-card>
+    </mat-grid-tile>
+</mat-grid-list>
 
 
 

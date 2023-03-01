@@ -32,6 +32,26 @@ export interface OMDBResponse {
     Response: string;
 }
 
+
+export interface OMDBMovieBrief {
+    Title: string;
+    Year: string;
+    imdbID: string;
+    Type: string;
+    Poster: string;
+}
+export interface OMDBMovieList {
+    Search: OMDBMovieBrief[];
+    totoalResults: string;
+    Response: string;
+}
+export interface OMDBMovieListError {
+    Response: string;
+    Error: string;
+}
+
+type OMDBMoiveListResponse = OMDBMovieList | OMDBMovieListError;
+
 export const fakeMovieData = {
     Title: "init",
     Year: "2020",
@@ -65,32 +85,59 @@ export const fakeMovieData = {
     Response: "True"
 }
 
+export const fakeMovieBrief:OMDBMovieBrief = {
+    Title: "",
+    Year: "",
+    imdbID: "",
+    Type: "",
+    Poster: ""
+}
+
+export const fakeErrorResponse = {
+    Response: "Error",
+    Error: "Movie not found!"
+}
+
 @Injectable({
     providedIn: 'root'
 })
 export class OMDBDataService{
-    // private messageSource = new BehaviorSubject('default message');
-    // currentMessage = this.messageSource.asObservable();
+    private responseMessage = new BehaviorSubject('default message');
+    currentResponseMessage = this.responseMessage.asObservable();
 
     
     private movieData:BehaviorSubject<any> = new BehaviorSubject({});
     currentMovieData = this.movieData.asObservable()
 
-    // private albumData:BehaviorSubject<any> = new BehaviorSubject({'results':""});
-    // currentAlbumData = this.albumData.asObservable()
+    private movieListData:BehaviorSubject<any> = new BehaviorSubject([]);
+    currentMovieListData = this.movieListData.asObservable()
 
 
     constructor(private http: HttpClient){}
 
 
-    // TODO - replace the api for searching a movie list
     public searchByTitle(title: string){
-        this.http.get<OMDBResponse>(`http://www.omdbapi.com/?i=tt2313197&apikey=e7d1080&t=${title}&plot=full`)
-            // .pipe(map((data: LastFmArtistResponse) => data.results.artistmatches.artist.slice(0, 5)))
-            .subscribe(data => this.movieData.next(data))
+        this.http.get<OMDBMoiveListResponse>(`http://www.omdbapi.com/?apikey=e7d1080&s=${title}&plot=full`)
+            .subscribe(res => {
+                if ('Search' in res){
+                    console.log(res.Search);
+                    this.movieListData.next(res.Search);
+                } else {
+                    console.error(res.Error);
+                    this.movieListData.next([]);
+                    this.responseMessage.next(res.Error);
+                }
+            })
     }
 
+    // TODO - replace the api for searching a movie list
+    // public searchByTitle(title: string){
+    //     this.http.get<OMDBResponse>(`http://www.omdbapi.com/?i=tt2313197&apikey=e7d1080&t=${title}&plot=full`)
+    //         // .pipe(map((data: LastFmArtistResponse) => data.results.artistmatches.artist.slice(0, 5)))
+    //         .subscribe(data => this.movieData.next(data))
+    // }
 
 
+    
 
 }
