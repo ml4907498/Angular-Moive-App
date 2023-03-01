@@ -32,6 +32,9 @@
 .card-header{
   height: 65px;
 }
+.card-header-detial{
+  height: 35px;
+}
 .card-title{
   color:black;
 }

@@ -131,10 +131,8 @@ export class OMDBDataService{
     }
 
 
-    public getMoiveDetial(title: string){
-        return this.http.get<OMDBMoiveDetial>(`http://www.omdbapi.com/?i=tt2313197&apikey=e7d1080&t=${title}&plot=full`)
-            // .pipe(map((data: LastFmArtistResponse) => data.results.artistmatches.artist.slice(0, 5)))
-            // .subscribe(data => this.movieData.next(data))
+    public getMoiveDetialById(imdbId: string){
+        return this.http.get<OMDBMoiveDetial>(`http://www.omdbapi.com/?apikey=e7d1080&i=${imdbId}&plot=full`)
     }
 
 

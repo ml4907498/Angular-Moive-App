@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { OMDBMoiveDetial } from 'src/app/services/OMDB-data.service';
 import { FavoriteMovieDataService } from 'src/app/services/favoriteMovie-data.service';
+import { OMDBMoiveDetial, fakeMovieDetial } from 'src/app/services/OMDB-data.service';
+import { OMDBDataService } from 'src/app/services/OMDB-data.service';
 
 @Component({
   selector: 'app-favorite',
@@ -9,20 +10,21 @@ import { FavoriteMovieDataService } from 'src/app/services/favoriteMovie-data.se
 })
 
 
-
 export class FavoriteComponent {
-  favoriteList: OMDBMoiveDetial[] = [];
-  count:number = 0;
+  movieListData:OMDBMoiveDetial[] = [];
 
   constructor(
-    private favoriteMovieDataService: FavoriteMovieDataService
+    private favoriteMovieDataService: FavoriteMovieDataService,
+    private omdbDataService: OMDBDataService
   ){}
   
   ngOnInit(): void {
-    // this.favoriteMovieDataService.currentMovieListData
-    //   .subscribe(data => {
-    //     console.log(data)
-    //     this.favoriteList = data;
-    // })
+    this.favoriteMovieDataService.currentimdbIdList.subscribe(data => {
+      this.movieListData = [];
+      data.forEach((id:string)=>{
+        this.omdbDataService.getMoiveDetialById(id).subscribe(data=>this.movieListData.push(data))
+        console.log(this.movieListData)
+      })
+    })
   }
 }

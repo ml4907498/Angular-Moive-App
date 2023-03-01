@@ -28,7 +28,8 @@ export class CardComponent implements OnInit{
 
 
   getMoiveDetial(){
-    this.omdbDataService.getMoiveDetial(this.data.Title)
+    console.log(this.data.imdbID)
+    this.omdbDataService.getMoiveDetialById(this.data.imdbID)
       .subscribe(data => this.detialData = data);
   }
 

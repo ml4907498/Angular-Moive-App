@@ -1,8 +1,17 @@
-<mat-grid-list class="home-root" cols="5" rowHeight="1:1">
+<!-- <mat-grid-list class="home-root" cols="5" rowHeight="1:1">
     <mat-grid-tile *ngFor="let item of favoriteList">
         <app-card [data] = "item" *ngIf="favoriteList.length>0"></app-card>
     </mat-grid-tile>
+</mat-grid-list> -->
+
+
+
+<mat-toolbar>
+    <span class="header-title">Your Watch List:</span>
+</mat-toolbar>
+
+<mat-grid-list class="home-root" cols="4" rowHeight="1:1.8">
+    <mat-grid-tile *ngFor="let item of movieListData">
+        <app-card [data] = "item" *ngIf="movieListData.length>0"></app-card>
+    </mat-grid-tile>
 </mat-grid-list>
-
-
-

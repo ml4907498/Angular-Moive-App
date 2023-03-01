@@ -8,9 +8,8 @@ import { OMDBMovieBrief, fakeMovieBrief } from 'src/app/services/OMDB-data.servi
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
-  movieListData:OMDBMovieBrief[] = [fakeMovieBrief];
+  movieListData:OMDBMovieBrief[] = [];
   showCard:boolean = false;
-  movieData:OMDBMovieBrief = fakeMovieBrief
 
   constructor(
     private omdbDataService: OMDBDataService
@@ -20,7 +19,6 @@ export class HomeComponent implements OnInit{
     this.omdbDataService.currentMovieListData
       .subscribe(data => {
         this.movieListData = data;
-        this.movieData = data[0]
         console.log(data)
         // if(data.Title) this.showCard = true;
   })
