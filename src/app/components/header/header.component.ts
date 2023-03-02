@@ -18,7 +18,8 @@ export class HeaderComponent implements OnInit{
   toppings = new FormControl('');
   count = 0;
 
-  toppingList: string[] = ['Title', 'IMBD ID'];
+  toppingList: string[] = ['Title'];
+  // toppingList: string[] = ['Title', 'IMBD ID'];
   selectedOption:string = this.toppingList[0];
 
   
@@ -37,7 +38,7 @@ export class HeaderComponent implements OnInit{
 
   handleKeyDown(){
     console.log(this.inputsValue.title);
-    this.omdbDataService.searchByTitle(this.inputsValue.title);
+    this.omdbDataService.searchByTitle(this.inputsValue);
     this.router.navigate(['/']);
   }
 

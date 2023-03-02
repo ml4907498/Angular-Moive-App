@@ -116,8 +116,8 @@ export class OMDBDataService{
     constructor(private http: HttpClient){}
 
 
-    public searchByTitle(title: string){
-        this.http.get<OMDBMoiveListResponse>(`http://www.omdbapi.com/?apikey=e7d1080&s=${title}&plot=full`)
+    public searchByTitle(searchOptions:{title: string, year: string}){
+        this.http.get<OMDBMoiveListResponse>(`http://www.omdbapi.com/?apikey=e7d1080&s=${searchOptions.title}&y=${searchOptions.year}&plot=full`)
             .subscribe(res => {
                 if ('Search' in res){
                     console.log(res.Search);
