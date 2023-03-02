@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms'
 import { OMDBDataService } from 'src/app/services/OMDB-data.service';
 import { FavoriteMovieDataService } from 'src/app/services/favoriteMovie-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +24,8 @@ export class HeaderComponent implements OnInit{
   
   constructor(
     private omdbDataService: OMDBDataService,
-    private favoriteMovieDataService: FavoriteMovieDataService
+    private favoriteMovieDataService: FavoriteMovieDataService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -34,8 +36,9 @@ export class HeaderComponent implements OnInit{
   }
 
   handleKeyDown(){
-    console.log(this.inputsValue.title)
+    console.log(this.inputsValue.title);
     this.omdbDataService.searchByTitle(this.inputsValue.title);
+    this.router.navigate(['/']);
   }
 
 
