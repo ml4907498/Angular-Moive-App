@@ -3,7 +3,6 @@
         <mat-icon>menu</mat-icon>
     </button>
     <span class="header-title" [routerLink]="'/'">OMDM API</span>
-    <!-- <span class="header-spacer"></span> -->
     <div class="header-container">
         <mat-form-field appearance="fill" class="header-form-field">
             <mat-label>search method</mat-label>
@@ -13,7 +12,6 @@
         </mat-form-field>
 
         <mat-form-field class="header-form-field" *ngIf="selectedOption === 'Title'">
-            <!-- <mat-icon  matPrefix>search</mat-icon> -->
             <mat-label>Title</mat-label>
             <input matInput type="text" [(ngModel)]="inputsValue.title" (keydown.enter)="handleKeyDown()">
             <button *ngIf="inputsValue.title" matSuffix mat-icon-button aria-label="Clear" (click)="inputsValue.title=''" >
@@ -23,7 +21,6 @@
        
         <mat-form-field class="header-form-field" *ngIf="selectedOption === 'Title'">
             <mat-label>Year</mat-label>
-            <!-- <mat-icon  matPrefix>search</mat-icon> -->
             <input matInput type="text" [(ngModel)]="inputsValue.year" (keydown.enter)="handleKeyDown()">
             <button *ngIf="inputsValue.year" matSuffix mat-icon-button aria-label="Clear" (click)="inputsValue.year=''">
                 <mat-icon>close</mat-icon>
@@ -32,7 +29,6 @@
 
         <mat-form-field class="header-form-field"  *ngIf="selectedOption === 'IMBD ID'">
             <mat-label>IMDB ID</mat-label>
-            <!-- <mat-icon  matPrefix>search</mat-icon> -->
             <input matInput type="text" [(ngModel)]="inputsValue.imdb" (keydown.enter)="handleKeyDown()">
             <button *ngIf="inputsValue.imdb" matSuffix mat-icon-button aria-label="Clear" (click)="inputsValue.imdb=''">
                 <mat-icon>close</mat-icon>
@@ -44,15 +40,11 @@
     </button>
 
     <span class="header-spacer"></span>
-
     <button mat-icon-button [routerLink]="'/'">
         <mat-icon>home</mat-icon>
     </button>
     <button mat-icon-button [routerLink]="'/favorite'">
         <mat-icon matBadge={{count}} matBadgeColor="warn">favorite</mat-icon>
     </button>
-    <!-- <button mat-icon-button>
-        <mat-icon>share</mat-icon>
-    </button> -->
 </mat-toolbar>
 <div class="header-filler"><div>

@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient  } from "@angular/common/http";
-import { Observable, BehaviorSubject } from "rxjs";
-import { map } from 'rxjs/operators'
+import { BehaviorSubject } from "rxjs";
 
 
 export interface OMDBMoiveDetial {
@@ -32,7 +31,6 @@ export interface OMDBMoiveDetial {
     Response: string;
 }
 
-
 export interface OMDBMovieBrief {
     Title: string;
     Year: string;
@@ -40,11 +38,13 @@ export interface OMDBMovieBrief {
     Type: string;
     Poster: string;
 }
+
 export interface OMDBMovieList {
     Search: OMDBMovieBrief[];
     totoalResults: string;
     Response: string;
 }
+
 export interface OMDBMovieListError {
     Response: string;
     Error: string;
@@ -52,7 +52,7 @@ export interface OMDBMovieListError {
 
 type OMDBMoiveListResponse = OMDBMovieList | OMDBMovieListError;
 
-export const fakeMovieDetial = {
+export const fakeMovieDetial:OMDBMoiveDetial = {
     Title: "",
     Year: "",
     Rated: "",
@@ -93,7 +93,7 @@ export const fakeMovieBrief:OMDBMovieBrief = {
     Poster: ""
 }
 
-export const fakeErrorResponse = {
+export const fakeErrorResponse:OMDBMovieListError = {
     Response: "Error",
     Error: "Movie not found!"
 }
@@ -105,16 +105,10 @@ export class OMDBDataService{
     private responseMessage = new BehaviorSubject('default message');
     currentResponseMessage = this.responseMessage.asObservable();
 
-    
-    private movieData:BehaviorSubject<any> = new BehaviorSubject({});
-    currentMovieData = this.movieData.asObservable()
-
     private movieListData:BehaviorSubject<any> = new BehaviorSubject([]);
     currentMovieListData = this.movieListData.asObservable()
 
-
     constructor(private http: HttpClient){}
-
 
     public searchByTitle(searchOptions:{title: string, year: string}){
         this.http.get<OMDBMoiveListResponse>(`http://www.omdbapi.com/?apikey=e7d1080&s=${searchOptions.title}&y=${searchOptions.year}&plot=full`)
@@ -130,12 +124,7 @@ export class OMDBDataService{
             })
     }
 
-
     public getMoiveDetialById(imdbId: string){
         return this.http.get<OMDBMoiveDetial>(`http://www.omdbapi.com/?apikey=e7d1080&i=${imdbId}&plot=full`)
     }
-
-
-    
-
 }

@@ -11,7 +11,6 @@ export class CardComponent implements OnInit{
   @Input() data: OMDBMovieBrief;
   componentName:String = 'brief';
   isBasic:Boolean = true;
-  count = 0;
 
   detialData: OMDBMoiveDetial = fakeMovieDetial;
   
@@ -22,11 +21,12 @@ export class CardComponent implements OnInit{
     this.data = fakeMovieBrief;
   }
 
+  // initialize the favorite button based on the imdbID list containing the favorite movies
   ngOnInit(): void {
     this.isBasic = !this.favoriteMovieDataService.getIsFavorite(this.data.imdbID);
   }
 
-
+  // handle onclick of the More info button
   getMoiveDetial(){
     console.log(this.data.imdbID)
     this.omdbDataService.getMoiveDetialById(this.data.imdbID)
@@ -34,6 +34,7 @@ export class CardComponent implements OnInit{
   }
 
 
+  // handle onclick of the Favorite button
   addToFavoriteList(){
     if(this.isBasic){
       this.favoriteMovieDataService.addFavoriteMovie(this.data.imdbID);

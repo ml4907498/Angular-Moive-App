@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FavoriteMovieDataService } from 'src/app/services/favoriteMovie-data.service';
-import { OMDBMoiveDetial, fakeMovieDetial } from 'src/app/services/OMDB-data.service';
+import { OMDBMoiveDetial } from 'src/app/services/OMDB-data.service';
 import { OMDBDataService } from 'src/app/services/OMDB-data.service';
 
 @Component({
@@ -18,6 +18,7 @@ export class FavoriteComponent {
     private omdbDataService: OMDBDataService
   ){}
   
+  // request the detail information of the movies based on the imdbIdList
   ngOnInit(): void {
     this.favoriteMovieDataService.currentimdbIdList.subscribe(data => {
       this.movieListData = [];

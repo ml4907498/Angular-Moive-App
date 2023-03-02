@@ -1,6 +1,6 @@
 import { OMDBDataService } from 'src/app/services/OMDB-data.service';
 import { Component, OnInit } from '@angular/core';
-import { OMDBMovieBrief, fakeMovieBrief } from 'src/app/services/OMDB-data.service';
+import { OMDBMovieBrief } from 'src/app/services/OMDB-data.service';
 
 @Component({
   selector: 'app-home',
@@ -20,12 +20,6 @@ export class HomeComponent implements OnInit{
       .subscribe(data => {
         this.movieListData = data;
         console.log(data)
-        // if(data.Title) this.showCard = true;
-  })
-
-
-    // this.lastFMDataService.currentMessage.subscribe(message => console.log(message))
+    })
   }
-  
-
 }
